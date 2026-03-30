@@ -1,0 +1,13 @@
+repo_root: .
+segment_extensions: [".xml", ".txt", ".md"]
+batch_size: 500
+forbidden_words:
+  - कदाचित
+  - म्हणजे
+  - अर्थात
+  - तत्त्वज्ञान
+required_columns:
+  - pali
+  - marathi_reviewed
+  - status
+  - reviewer_name
