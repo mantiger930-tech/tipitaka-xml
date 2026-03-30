@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "source_path": {"type": "string"},
+    "line_no": {"type": "integer"},
+    "pali": {"type": "string"},
+    "marathi_draft": {"type": "string"},
+    "marathi_reviewed": {"type": "string"},
+    "status": {"type": "string", "enum": ["draft", "reviewed", "vipassana_checked", "approved"]},
+    "reviewer_name": {"type": "string"},
+    "reviewer_notes": {"type": "string"},
+    "vipassana_notes": {"type": "string"}
+  },
+  "required": ["id", "source_path", "line_no", "pali", "status"]
+}

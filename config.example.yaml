@@ -1,0 +1,24 @@
+repo_root: .
+segment_extensions:
+  - .xml
+  - .txt
+  - .md
+exclude_dirs:
+  - .git
+  - node_modules
+batch_size: 500
+status_values:
+  - draft
+  - reviewed
+  - vipassana_checked
+  - approved
+forbidden_words:
+  - कदाचित
+  - बहुधा
+  - म्हणजे
+  - अर्थात
+  - तत्त्वज्ञान
+required_review_fields:
+  - marathi_reviewed
+  - status
+  - reviewer_name

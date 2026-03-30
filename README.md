@@ -1,24 +1,35 @@
-# Tipitaka.org XML files
+# Authentic Marathi Preparation System for Tipitaka XML
 
-These files are made freely available for non-commericial use. Please attribute Vipassana Research Institute when incorporating these files into your projects.
+This package is designed to be dropped into the root of the `tipitaka-xml` repository.
 
-These files are updated from time to time in order to correct errors that come to light. So, please ensure that you set up your project to be able to sync with this repo to ensure that you are working with the latest versions.
+It does **not** claim to generate an official Marathi Tipitaka automatically. Instead, it builds a full-corpus, auditable workflow for preparing Marathi in a truth-first way:
 
-# Tipitaka.org
+- source scan across the whole repository
+- segment extraction with stable IDs
+- corpus manifest generation
+- locked doctrinal glossary
+- reviewer batch generation
+- validation checks
+- merge/export pipeline
+- simple reviewer web app
 
-Source files for Tipitaka.org website.
+## Quick start
 
-## The HTML Source files
----------------------
-These are located in the tipitaka.org folder.
+```bash
+python marathi/tools/pipeline.py scan --repo-root . --output marathi/work/source_segments.jsonl
+python marathi/tools/pipeline.py manifest --segments marathi/work/source_segments.jsonl --output marathi/work/corpus_manifest.json
+python marathi/tools/pipeline.py batch --segments marathi/work/source_segments.jsonl --glossary marathi/glossary_locked.csv --batch-size 500 --output-dir marathi/work/review_batches
+python marathi/tools/pipeline.py validate --input-dir marathi/work/review_batches --glossary marathi/glossary_locked.csv --report marathi/work/validation_report.json
+python marathi/tools/pipeline.py merge --input-dir marathi/work/review_batches --output marathi/work/marathi_parallel_corpus.jsonl
+python marathi/tools/pipeline.py export --input marathi/work/marathi_parallel_corpus.jsonl --csv-output marathi/work/marathi_parallel_corpus.csv
+```
 
-## Code Converters
------------------
+## Reviewer app
 
-The also contains various Python and C# code snippets to perform different types of script conversions needed for the site.
+```bash
+streamlit run marathi/app/reviewer_app.py
+```
 
-Primary content of the Tipitaka sourcefiles are captured in Devanagari script and stored in ==deva_master== folder. Any updates needed in the tipitaka text (corrections, typo errors, etc.) are carried out in Devanagari script. 
+## Publication rule
 
-A C# conversion script is then run to generate the transliterated text for all othe supported scripts (see code/converters).
-
-For addition of new content, e.g. in the Anna section, an additional processing is required, i.e. new text files are created in Markdown MD fommat. Then a Python script is then run to covnert the markdown file into an xml file (see the Python script in /code/md2xmlconverter).  
+Only rows with `status=approved` should be treated as publication-ready.
