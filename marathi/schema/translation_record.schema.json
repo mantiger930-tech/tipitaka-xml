@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "pali": {"type": "string"},
+    "marathi_reviewed": {"type": "string"},
+    "status": {"type": "string"},
+    "reviewer_name": {"type": "string"},
+    "reviewer_notes": {"type": "string"}
+  },
+  "required": ["id", "pali", "marathi_reviewed", "status"]
+}
